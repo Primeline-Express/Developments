@@ -231,7 +231,8 @@ Public Class Form1
         For i = 0 To listRecipients.Count() - 1
             Mail.To.Add(listRecipients(i))
         Next
-
+        Dim strEmailAddress = ConfigurationManager.AppSettings("strEmailAddress")
+        dim strEmailPassword = ConfigurationManager.AppSettings("strEmailPassword")
         Mail.Subject = "XML File Monitor"
         Mail.From = New MailAddress("reporting@primelineexpress.co.uk", "Primeline Express Reporting", System.Text.Encoding.UTF8)
         Dim attachment As System.Net.Mail.Attachment
@@ -242,7 +243,7 @@ Public Class Form1
         Mail.Body = strHtmlBody 'Message Here
 
         Dim SMTP As New SmtpClient("smtp.gmail.com") With {
-            .Credentials = New System.Net.NetworkCredential("noreply.quotes@primelineexpress.co.uk", "primeEX101"), '<-- Password Here
+            .Credentials = New System.Net.NetworkCredential(strEmailAddress, strEmailPassword), '<-- Password Here
             .EnableSsl = True,
             .Port = "587"
         }
