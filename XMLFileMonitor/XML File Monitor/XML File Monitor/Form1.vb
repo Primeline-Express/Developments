@@ -25,7 +25,7 @@ Public Class Form1
     Const fldFolder As Long = 3
     Const fldRecCnt As Long = 4
     Const fldUnSuccCnt As Long = 5
-    Const fldSuccCnt As Long = 6
+    Const fldSuccCnt As Long = 6 'Muppet
     Const fldTime As Long = 7
     Const lngFields As Long = 7
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
