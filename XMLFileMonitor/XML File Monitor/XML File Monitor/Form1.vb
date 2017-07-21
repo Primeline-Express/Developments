@@ -64,7 +64,7 @@ Public Class Form1
         If lngTotal > 0 Then
             Mail.Subject = "XML File Monitor Unsuccessful Files"
             Mail.From = New MailAddress("reporting@primelineexpress.co.uk", "Primeline Express Reporting", System.Text.Encoding.UTF8)
-            SMTP.Credentials = New System.Net.NetworkCredential(strEmailAddress, "primeEX101") '<-- Password Here
+            SMTP.Credentials = New System.Net.NetworkCredential(strEmailAddress, strEmailPassword) '<-- Password Here
             Mail.To.Add("reporting@primelineexpress.co.uk")
             If lngCount > 0 Then
                 For i = 0 To lngCount - 1
