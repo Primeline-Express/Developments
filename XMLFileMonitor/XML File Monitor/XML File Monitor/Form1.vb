@@ -1,7 +1,10 @@
 ﻿Option Compare Text
 Option Explicit On
 Imports System.Net.Mail
+Imports System.Configuration
+
 Public Class Form1
+
     Const strDefaultFolder As String = "\\APOLLO1\Azyra\"
     Const strPODsFolder As String = "Derry Morgan EDI\"
     Const strEDIFolder As String = "EDI Messages\Live EDI\"
@@ -50,7 +53,8 @@ Public Class Form1
         Dim lngCount3 As Long
         Dim lngTotal As Long
         Dim i As Long
-
+        Dim strEmailAddress As String = ConfigurationManager.AppSettings("strEmailAddress")
+        Dim strEmailPassword As String = ConfigurationManager.AppSettings("strEmailPassword")
         Dim MyFiles1() As String = IO.Directory.GetFiles(strEDIs & "UnSuccessful\")
         lngCount = MyFiles1.Length
         Dim MyFiles3() As String = IO.Directory.GetFiles(strEDIs & strTestFolder & "UnSuccessful\")
@@ -60,7 +64,7 @@ Public Class Form1
         If lngTotal > 0 Then
             Mail.Subject = "XML File Monitor Unsuccessful Files"
             Mail.From = New MailAddress("reporting@primelineexpress.co.uk", "Primeline Express Reporting", System.Text.Encoding.UTF8)
-            SMTP.Credentials = New System.Net.NetworkCredential("noreply.quotes@primelineexpress.co.uk", "primeEX101") '<-- Password Here
+            SMTP.Credentials = New System.Net.NetworkCredential(strEmailAddress, "primeEX101") '<-- Password Here
             Mail.To.Add("reporting@primelineexpress.co.uk")
             If lngCount > 0 Then
                 For i = 0 To lngCount - 1
